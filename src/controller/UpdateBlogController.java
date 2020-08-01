@@ -33,7 +33,7 @@ public class UpdateBlogController extends HttpServlet {
 		blog.setBlogId(blogId);
 		blog.setBlogTitle(blogTitle);
 		blog.setBlogDescription(blogDescription);
-		blog.setPostedOn(postedOn);
+		//blog.setPostedOn(postedOn);
 		
 		BlogDaoImpl blogDao = new BlogDaoImpl();
 		try {

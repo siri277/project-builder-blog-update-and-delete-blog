@@ -24,7 +24,12 @@ public class EditViewController extends HttpServlet {
 		
 		
   		try {
-			showEditForm(request,response);
+			try {
+				showEditForm(request,response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -43,7 +48,7 @@ public class EditViewController extends HttpServlet {
 		doGet(request, response);
 	}
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
+			throws SQLException, ServletException, IOException, ClassNotFoundException {
 		BlogDaoImpl blogDAO = new BlogDaoImpl();
 		int id = Integer.parseInt(request.getParameter("id"));
 		Blog existingBlog = blogDAO.selectBlog(id);

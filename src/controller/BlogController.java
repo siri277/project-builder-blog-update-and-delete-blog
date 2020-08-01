@@ -49,7 +49,18 @@ public class BlogController extends HttpServlet {
 				//updateBlog(request, response);
 				break;
 			case "/list":
-				listBlog(request, response);
+				try {
+					listBlog(request, response);
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ServletException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 			default:
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/login.jsp");
@@ -66,7 +77,7 @@ public class BlogController extends HttpServlet {
 		doGet(request, response);
 	}
 	private void listBlog(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
+			throws SQLException, IOException, ServletException, ClassNotFoundException {
 		BlogDaoImpl blogDAO = new BlogDaoImpl();
 		List<Blog> listBlog = blogDAO.selectAllBlogs();
 		request.setAttribute("listBlog", listBlog);
